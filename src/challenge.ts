@@ -18,9 +18,9 @@ import { Student } from "./students";
  *    // ]
  */
 function getStudentsByCourse(students: Student[], course: string): Student[] {
-  // write your code here...
-
-  return []; // replace empty array with what you see is fit
+  return students.filter(
+    (std) => typeof std.courses.find((crs) => crs === course) == "string"
+  ); // replace empty array with what you see is fit
 }
 
 /**
@@ -35,9 +35,14 @@ function getStudentsByCourse(students: Student[], course: string): Student[] {
  *    // => ["Math", "Science", "History", "English", "Art", "Music", "PE"]
  */
 function listAllCourses(students: Student[]): string[] {
-  // write your code here...
+  let result: string[] = [];
+  students.forEach((std) => {
+    std.courses.forEach((crs) => {
+      if (!result.find((course) => course === crs)) result.push(crs);
+    });
+  });
 
-  return []; // replace empty array with what you see is fit
+  return result; // replace empty array with what you see is fit
 }
 
 export { getStudentsByCourse, listAllCourses };
